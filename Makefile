@@ -1,3 +1,8 @@
+# Help target to list all commands
+help:
+	@echo "Available commands:"
+	@awk '/^[a-zA-Z0-9_-]+:/{print $$1}' Makefile | sed 's/://'
+
 # Install dependencies
 install:
 	pip install -r requirements.txt
