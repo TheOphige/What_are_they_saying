@@ -1,3 +1,41 @@
+# Ignore Python bytecode
+*.pyc
+*.pyo
+
+# Ignore environment variables
+.env
+
+# Ignore virtual environment directory
+venv/
+.env/
+.venv/
+
+# Ignore Jupyter Notebook checkpoints
+.ipynb_checkpoints/
+
+# Ignore data directories
+data/raw/
+data/processed/
+data/word_clouds/
+data/keywords/
+
+# Ignore notebooks (optional, if you don't want to track them in Git)
+notebooks/
+
+# Ignore log files
+*.log
+
+# Ignore OS-specific files
+.DS_Store
+Thumbs.db
+
+# Ignore Streamlit cache
+.streamlit/
+
+# Ignore any secret or config files
+config.py
+
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
