@@ -9,7 +9,7 @@ install:
 
 # Run the Streamlit app
 run:
-	streamlit run streamlit_app/main.py
+	streamlit run main.py
 
 # Run tests
 test:

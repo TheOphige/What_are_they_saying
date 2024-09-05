@@ -34,13 +34,6 @@ what_are_they_saying/
 │   ├── visualization.py     # Functions for generating and handling word clouds
 │   ├── utils.py             # Utility functions (e.g., text pre-processing, language detection)
 │   └── config.py            # Configuration settings (e.g., API keys, default settings)
-├── streamlit_app/
-│   ├── __init__.py          # Makes streamlit_app a Python package
-│   ├── main.py              # Main Streamlit app script
-│   ├── sidebar.py           # Streamlit sidebar code
-│   ├── layout.py            # Layout configuration for the Streamlit app
-│   ├── callbacks.py         # Callback functions for interactive elements
-│   └── components.py        # Custom Streamlit components (e.g., word cloud visualization)
 ├── tests/
 │   ├── __init__.py          # Makes tests a Python package
 │   ├── test_translation.py  # Unit tests for translation functions
@@ -50,6 +43,7 @@ what_are_they_saying/
 │   └── test_utils.py        # Unit tests for utility functions
 ├── .gitignore               # Git ignore file to exclude specific files and directories
 ├── requirements.txt         # List of dependencies (e.g., Streamlit, transformers, wordcloud)
+├── main.py                  # Main Streamlit app script
 ├── README.md                # Project overview and instructions
 ├── Makefile                 # Automate common tasks (e.g., testing, running the app)
 └── .env                     # Environment variables (e.g., API keys, settings)
