@@ -55,7 +55,7 @@ what_are_they_saying/
 
 ## Installation
 ```bash
-git clone https://github.com/yourusername/what_are_they_saying.git
+git clone https://github.com/TheOphige/what_are_they_saying.git
 cd what_are_they_saying
 
 python -m venv venv
