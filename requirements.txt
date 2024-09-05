@@ -1,0 +1,10 @@
+streamlit
+transformers
+torch
+beautifulsoup4
+requests
+wikipedia-api
+yake
+wordcloud
+matplotlib
+pytest
