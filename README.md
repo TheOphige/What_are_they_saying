@@ -10,6 +10,8 @@ This project translates, summarizes, and provides insights into any text or Wiki
 - **Keyword Extraction**: Extract important keywords from the summary.
 - **Interactive Word Cloud**: Visualize keywords with interactive word clouds.
 
+![Project Screenshot](assets/screenshot.png)
+
 ## Project Structure
 
 Here’s the structure of the project:
