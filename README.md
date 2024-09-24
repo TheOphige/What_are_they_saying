@@ -90,6 +90,17 @@ For more details on the input and expected output, refer to the Streamlit app in
 make test
 ```
 
+## TODOs
+- [x]  Add option to produce multiple summaries
+- [x]  Create github repo
+- [x]  Add custom summarization
+- [x]  Add interactive tool to debug chunk size
+- [ ]  Add a free option
+- [ ]  Add an option to estimate cost in the case of using paid API like ChatGPT
+- [ ]  Add token count option
+- [ ]  Add option to create summaries for multiple papers inside a folder
+- [ ]  Integrate map prompt and combine prompt
+
 ## Contributing
 Guidelines for contributing to the project.
 

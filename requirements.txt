@@ -1,3 +1,4 @@
+wikipedia
 streamlit
 transformers
 torch
@@ -6,5 +7,12 @@ requests
 wikipedia-api
 yake
 wordcloud
-matplotlib
+matplotlib  
 pytest
+sentencepiece
+sacremoses
+translate
+googletrans
+sumy
+gensim
+tenacity
