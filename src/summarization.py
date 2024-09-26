@@ -27,7 +27,7 @@ OPENROUTER_BASE_URL = os.getenv("OPENROUTER_BASE_URL")
 llm = ChatOpenAI(
     openai_api_key=OPENROUTER_API_KEY,
     openai_api_base=OPENROUTER_BASE_URL,
-    model_name="mattshumer/reflection-70b:free",
+    model_name="mistralai/pixtral-12b:free",
 )
 
 # Define the prompt template for summarization

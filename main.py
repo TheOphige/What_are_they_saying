@@ -2,32 +2,31 @@ import streamlit as st
 from src.data_processing import clean_text
 from src.translation import translate_text
 from src.summarization import summarize_input
-from src.keyword_extraction import extract_keywords
+from src.keyword_extraction import extract_keywords, convert_keywords
 from src.visualization import generate_word_cloud
 
 
 # Sidebar for user input
 st.sidebar.header("What are they saying?")
-input_type = st.sidebar.selectbox("Choose input type", ("Text", "Wikipedia Query"))
-input_text = st.sidebar.text_area("Enter text or Wikipedia Query here")
-# language
-st.sidebar.title("Select Language")
-source_language = st.sidebar.selectbox("Source Language", ["en", "fr", "de", "es"])
-target_language = st.sidebar.selectbox("Target Language", ["en", "fr", "de", "es"])
-# to_do
-st.sidebar.title("Select Options")
-summarize = st.sidebar.checkbox("Summarize")
-keywords = st.sidebar.checkbox("Keywords")
-chat = st.sidebar.checkbox("Chat") 
+input_type = st.sidebar.selectbox("Choose input type", ("Wikipedia Query", "Text"))
+input_text = st.sidebar.text_area("Enter text or Search Query here")
 
-if st.sidebar.button("Analyze"):
-    if not input_text:
-        st.error("Please enter text or provide a URL.")
-    else:
-        try:
-            input_text = clean_text(input_text)
+# Sidebar for Mode Selection
+mode = st.sidebar.radio("Select Mode:", options=["Summarize in language", "Chat with doc"], index=0)
 
-            if summarize:
+if mode == "Summarize in language":
+    # language
+    source_language = st.sidebar.selectbox("Source Language", ["en", "fr", "de", "es"])
+    target_language = st.sidebar.selectbox("Target Language", ["en", "fr", "de", "es"])
+
+
+    if st.sidebar.button("Analyze"):
+        if not input_text:
+            st.error("Please enter text or provide a URL.")
+        else:
+            try:
+                input_text = clean_text(input_text)
+
                 # Summarization
                 with st.spinner("Summarizing the long talks..."):
                     if input_type == "Wikipedia Query":
@@ -54,31 +53,40 @@ if st.sidebar.button("Analyze"):
                 with st.expander("summary"):
                     st.write("#### Summary in your language")
                     st.write(translated_summary)
-            
-            if keywords:
+                
                 # Keyword Extraction
                 with st.spinner("Extracting keywords..."):
-                    keywords = extract_keywords(translated_summary, max_ngram_size=3, num_keywords=5, language=target_language)
+                    keywords = extract_keywords(translated_summary, max_ngram_size=3, num_keywords=15, language=target_language)
                     if not keywords:
                         st.warning("No keywords were extracted from the summary.")
                 
-                # keywords
+                # Display Keywords
                 with st.expander("keywords"):
-                    # Display Keywords
                     st.write("### Keywords")
-                    for kw, score in keywords:
-                        st.write(f"{kw}: {score}")
-                    
+                    keywords_string = ', '.join([keyword for keyword, score in keywords])
+                    st.write(keywords_string)
+                        
                     # Display Word Cloud
                     st.write("### Word Cloud")
-                    generate_word_cloud(keywords)
+                    converted_keywords = convert_keywords(keywords)
+                    print(converted_keywords)
+                    generate_word_cloud(converted_keywords)
 
-            if chat:
-                # Chat with text / Ask questions
+
+            except Exception as e:
+                st.error(f"An unexpected error occurred: {e}")
+
+
+
+elif mode == "Chat with doc":
+    # Chat with text / Ask questions
+    if st.sidebar.button("Analyze"):
+        if not input_text:
+            st.error("Please enter text or provide a URL.")
+        else:
+            try:
                 st.write("chatting..")
-            
-            if not any([chat, keywords, summarize]):
-                st.info("Select at least one option: \"Summarize or Keywords or Chat")
 
-        except Exception as e:
-            st.error(f"An unexpected error occurred: {e}")
+
+            except Exception as e:
+                st.error(f"An unexpected error occurred: {e}")
