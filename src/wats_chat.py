@@ -13,6 +13,7 @@ from langchain_community.document_loaders import WebBaseLoader
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_community.vectorstores import Chroma
 from langchain_community.embeddings import HuggingFaceInferenceAPIEmbeddings
+import chromadb
 
 # Load environment variables from .env
 from dotenv import find_dotenv, load_dotenv
@@ -62,7 +63,7 @@ def setup_retriever(input_type: str, input_text: None):
         embeddings = HuggingFaceInferenceAPIEmbeddings(
                         api_key=HUGGINGFACEHUB_API_TOKEN, model_name="sentence-transformers/all-MiniLM-l6-v2"
                     )
-
+        
         vectorstore = Chroma.from_documents(documents=all_splits, embedding=embeddings)
 
         retriever = vectorstore.as_retriever(k=4)
@@ -219,6 +220,9 @@ def setup_prompt(input_type: str):
 
 
 def on_chat_submit(input_type, input_text, chat_input):
+    # clear chromadb cache
+    chromadb.api.client.SharedSystemClient.clear_system_cache()
+
     # Display raw chat input for user
     st.session_state.history.append({"role": "user", "content": chat_input})
 
