@@ -16,3 +16,11 @@ googletrans
 sumy
 gensim
 tenacity
+
+
+streamlit
+langchain
+python-dotenv
+transformers
+torch
+faiss-cpu

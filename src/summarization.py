@@ -1,18 +1,8 @@
-# from transformers import pipeline
-
-# def summarize_text(text: str) -> str:
-#     """
-#     Summarize the input text using a pre-trained transformer model.
-#     """
-#     summarizer = pipeline('summarization')
-#     summary = summarizer(text, max_length=max_length, min_length=min_length, do_sample=False)
-#     return summary[0]['summary_text']
-
-
 import os
 from langchain_openai import ChatOpenAI
 from langchain_core.output_parsers import StrOutputParser
 from langchain_community.document_loaders import WikipediaLoader
+from langchain_community.document_loaders import WebBaseLoader
 from langchain.prompts import PromptTemplate
 from dotenv import find_dotenv, load_dotenv
 
@@ -45,15 +35,18 @@ prompt = PromptTemplate(
 summarize_chain = prompt | llm | StrOutputParser()
 
 # Function to summarize text or a Wikipedia page
-def summarize_input(input_data: str, is_query: bool = True) -> str:
+def summarize_input(input_text, input_type) -> str:
     # Determine whether input_data is a Wikipedia query or text and use the appropriate loader
-    if is_query:
-        loader = WikipediaLoader(query=input_data)
+    if input_type == "Wikipedia Query":
+        loader = WikipediaLoader(query=input_text, load_max_docs= 6) #, load_all_available_meta= True, doc_content_chars_max=2000)
         # Load the content
-        article_content = loader.load()[0].page_content
-    else:
+        article_content = loader.load() #[0].page_content
+    elif input_type == "Text":
+        article_content = input_text
+    elif input_type == "URL":
+        loader = WebBaseLoader(input_text)
         # Load the content
-        article_content = input_data
+        article_content = loader.load()
     
     
     # Use the LLM chain to generate a summary
