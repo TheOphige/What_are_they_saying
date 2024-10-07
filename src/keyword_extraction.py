@@ -22,7 +22,7 @@ def convert_keywords(keywords):
     for word, freq in keywords:
         # Replace spaces with underscores and multiply frequencies by 100
         new_word = word.replace(' ', '_')
-        new_freq = round(freq * 1000, 2)  # Multiply by 100 and round to 2 decimal places
+        new_freq = round(freq * 100, 2)  # Multiply by 100 and round to 2 decimal places
         converted_keywords.append((new_word, new_freq))
     return converted_keywords
 

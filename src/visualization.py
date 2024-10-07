@@ -1,72 +1,77 @@
-import streamlit.components.v1 as components
-import json
+import streamlit as st
+from wordcloud import WordCloud
+import io
+import requests
+from PIL import Image
+import matplotlib.pyplot as plt
+import os
 
+
+# Load environment variables from .env
+from dotenv import find_dotenv, load_dotenv
+
+# Load environment variables
+load_dotenv(find_dotenv())
+
+# Retrieve API keys from .env
+IMGUR_CLIENT_ID = os.getenv("IMGUR_CLIENT_ID")
+
+# Upload image to Imgur
+def upload_to_imgur(image):
+    """Upload an image to Imgur and return the URL."""
+    headers = {"Authorization": f"Client-ID {IMGUR_CLIENT_ID}"}
+    url = "https://api.imgur.com/3/image"
+    
+    # Send the image to Imgur
+    response = requests.post(url, headers=headers, files={"image": image})
+    
+    if response.status_code == 200:
+        # Get the URL of the uploaded image
+        image_url = response.json()["data"]["link"]
+        return image_url
+    else:
+        st.error("Failed to upload image")
+        return None
+
+# Generate the word cloud
 def generate_word_cloud(keywords: list):
     """
-    Generate an interactive word cloud from the extracted keywords and embed it in Streamlit.
+    Generate a colorful word cloud from the extracted keywords, upload it to Imgur, and display the image from Imgur.
     """
     # Create a dictionary of keywords and their frequencies
     word_freq = dict(keywords)
-
-    # Convert the word frequency dictionary to a JSON object for JavaScript
-    word_freq_json = json.dumps([{"text": word, "weight": freq} for word, freq in word_freq.items()])
-
-    # Embed the word cloud and JavaScript for interactivity
-    html_code = f"""
-    <html>
-    <head>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/wordcloud2.js/1.0.6/wordcloud2.min.js"></script>
-        <style>
-            #wordcloud {{ width: 100%; height: 450px; position: relative; }}
-            .tooltip {{
-                position: absolute;
-                display: none;
-                padding: 5px;
-                background: rgba(0, 0, 0, 0.7);
-                color: #fff;
-                border-radius: 3px;
-                font-size: 12px;
-            }}
-        </style>
-    </head>
-    <body>
-        <div id="wordcloud"></div>
-        <div id="tooltip" class="tooltip"></div>
-        <script>
-            const wordFreq = {word_freq_json};
-            const tooltip = document.getElementById('tooltip');
-            
-            WordCloud(document.getElementById('wordcloud'), {{
-                list: wordFreq.map(item => [item.text, item.weight]),
-                gridSize: 5,  // Adjust grid size for denser packing
-                weightFactor: function(size) {{ return size * 1.5; }},  // Scale the size dynamically
-                color: '#000000',
-                backgroundColor: '#ffffff',
-                rotateRatio: 0.5,  // Control word rotation (0 = no rotation)
-                minSize: 10,  // Minimum size of words
-                hover: function(item, dimension, event) {{
-                    if (item) {{
-                        tooltip.style.left = `${{event.clientX + 10}}px`;
-                        tooltip.style.top = `${{event.clientY + 10}}px`;
-                        tooltip.style.display = 'block';
-                        tooltip.innerText = 'Word: ' + item[0] + ', Frequency: ' + item[1];
-                    }} else {{
-                        tooltip.style.display = 'none';
-                    }}
-                }},
-                click: function(item) {{
-                    if (item) {{
-                        alert('You clicked on: ' + item[0]);
-                    }}
-                }}
-            }});
-        </script>
-    </body>
-    </html>
-    """
     
-    # Display the word cloud in Streamlit
-    components.html(html_code, height=450)
+    # Generate word cloud using the wordcloud module with a colormap for colors
+    wordcloud = WordCloud(
+        width=800, 
+        height=400, 
+        background_color='white', 
+        colormap='plasma'  # You can choose 'viridis', 'plasma', 'inferno', 'cividis', etc.
+    ).generate_from_frequencies(word_freq)
+
+    # Save the word cloud to an in-memory bytes buffer
+    image_buffer = io.BytesIO()
+    wordcloud_image = wordcloud.to_image()
+    wordcloud_image.save(image_buffer, format='PNG')
+    image_buffer.seek(0)  # Rewind to the start of the buffer
+    
+    # Upload the image to Imgur
+    imgur_url = upload_to_imgur(image_buffer)
+    
+    if imgur_url:
+        # Display the image from Imgur
+        st.image(imgur_url, caption='Colorful Word Cloud', use_column_width=True)
+
+# # Example usage
+# if __name__ == "__main__":
+#     st.title("Interactive Colorful Word Cloud")
+
+#     # Example list of keywords
+#     example_keywords = [("Streamlit", 10), ("WordCloud", 8), ("Python", 15), ("Data", 5), ("Visualization", 7)]
+
+#     # Generate and display the colorful word cloud
+#     generate_word_cloud(example_keywords)
+
 
 
 # import streamlit as st

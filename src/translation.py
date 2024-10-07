@@ -1,69 +1,3 @@
-# from googletrans import Translator
-
-# def split_text_into_chunks(text: str, chunk_size: int = 5000) -> list:
-#     """
-#     Splits the text into chunks to manage large text for translation.
-
-#     Args:
-#         text (str): The text to split.
-#         chunk_size (int): The maximum size of each chunk.
-
-#     Returns:
-#         list: A list of text chunks.
-#     """
-#     chunks = [text[i:i + chunk_size] for i in range(0, len(text), chunk_size)]
-#     return chunks
-
-# def translate_text(text: str, src_lang: str, tgt_lang: str) -> str:
-#     """
-#     Translates text from the source language to the target language using googletrans.
-
-#     Args:
-#         text (str): The input text to translate.
-#         src_lang (str): The source language code (e.g., 'en' for English).
-#         tgt_lang (str): The target language code (e.g., 'fr' for French).
-
-#     Returns:
-#         str: The translated text.
-#     """
-#     try:
-#         translator = Translator()
-#         chunks = split_text_into_chunks(text)
-
-#         translated_chunks = []
-#         for chunk in chunks:
-#             translated = translator.translate(chunk, src=src_lang, dest=tgt_lang)
-#             translated_chunks.append(translated.text)
-
-#         return ' '.join(translated_chunks)
-#     except Exception as e:
-#         raise RuntimeError(f"An error occurred during translation: {e}")
-
-# # Example usage:
-# # translated_text = translate_text("Your long text here", "en", "fr")
-
-
-# from googletrans import Translator
-# def translate_text(text: str, src_lang: str, tgt_lang: str) -> str:
-#     """
-#     Translate text from the source language to the target language using googletrans.
-
-#     Args:
-#         text (str): The input text to translate.
-#         src_lang (str): The source language code (e.g., 'en' for English).
-#         tgt_lang (str): The target language code (e.g., 'fr' for French).
-
-#     Returns:
-#         str: The translated text.
-#     """
-#     try:
-#         translator = Translator()
-#         translated = translator.translate(text, src=src_lang, dest=tgt_lang)
-#         return translated.text
-#     except Exception as e:
-#         raise RuntimeError(f"An error occurred during translation: {e}")
-
-
 import os
 import requests
 import time
@@ -255,3 +189,71 @@ def translate_text(text: str, src_lang: str, tgt_lang: str, max_retries: int = 5
 # tgt_language = 'fr'
 # translation = translate_text(text_to_translate, src_language, tgt_language)
 # print(translation)
+
+
+
+# from googletrans import Translator
+
+# def split_text_into_chunks(text: str, chunk_size: int = 5000) -> list:
+#     """
+#     Splits the text into chunks to manage large text for translation.
+
+#     Args:
+#         text (str): The text to split.
+#         chunk_size (int): The maximum size of each chunk.
+
+#     Returns:
+#         list: A list of text chunks.
+#     """
+#     chunks = [text[i:i + chunk_size] for i in range(0, len(text), chunk_size)]
+#     return chunks
+
+# def translate_text(text: str, src_lang: str, tgt_lang: str) -> str:
+#     """
+#     Translates text from the source language to the target language using googletrans.
+
+#     Args:
+#         text (str): The input text to translate.
+#         src_lang (str): The source language code (e.g., 'en' for English).
+#         tgt_lang (str): The target language code (e.g., 'fr' for French).
+
+#     Returns:
+#         str: The translated text.
+#     """
+#     try:
+#         translator = Translator()
+#         chunks = split_text_into_chunks(text)
+
+#         translated_chunks = []
+#         for chunk in chunks:
+#             translated = translator.translate(chunk, src=src_lang, dest=tgt_lang)
+#             translated_chunks.append(translated.text)
+
+#         return ' '.join(translated_chunks)
+#     except Exception as e:
+#         raise RuntimeError(f"An error occurred during translation: {e}")
+
+# # Example usage:
+# # translated_text = translate_text("Your long text here", "en", "fr")
+
+
+# from googletrans import Translator
+# def translate_text(text: str, src_lang: str, tgt_lang: str) -> str:
+#     """
+#     Translate text from the source language to the target language using googletrans.
+
+#     Args:
+#         text (str): The input text to translate.
+#         src_lang (str): The source language code (e.g., 'en' for English).
+#         tgt_lang (str): The target language code (e.g., 'fr' for French).
+
+#     Returns:
+#         str: The translated text.
+#     """
+#     try:
+#         translator = Translator()
+#         translated = translator.translate(text, src=src_lang, dest=tgt_lang)
+#         return translated.text
+#     except Exception as e:
+#         raise RuntimeError(f"An error occurred during translation: {e}")
+

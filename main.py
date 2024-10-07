@@ -93,7 +93,7 @@ if mode == "Summarize in language":
                     # Display Word Cloud
                     st.write("### Word Cloud")
                     converted_keywords = convert_keywords(keywords)
-                    #print(converted_keywords)
+                    # print(converted_keywords)
                     generate_word_cloud(converted_keywords)
 
 
