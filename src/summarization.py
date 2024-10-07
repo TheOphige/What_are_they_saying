@@ -1,17 +1,20 @@
 import os
+import streamlit as st
 from langchain_openai import ChatOpenAI
 from langchain_core.output_parsers import StrOutputParser
 from langchain_community.document_loaders import WikipediaLoader
 from langchain_community.document_loaders import WebBaseLoader
 from langchain.prompts import PromptTemplate
-from dotenv import find_dotenv, load_dotenv
+# from dotenv import find_dotenv, load_dotenv
 
-load_dotenv(find_dotenv())
+# load_dotenv(find_dotenv())
 
-# Retrieve API keys from .env
-OPENROUTER_API_KEY = os.getenv("OPENROUTER_API_KEY")
-OPENROUTER_BASE_URL = os.getenv("OPENROUTER_BASE_URL")
+# # Retrieve API keys from .env
+# OPENROUTER_API_KEY = os.getenv("OPENROUTER_API_KEY")
+# OPENROUTER_BASE_URL = os.getenv("OPENROUTER_BASE_URL")
 
+OPENROUTER_API_KEY = st.secrets["OPENROUTER_API_KEY"]
+OPENROUTER_BASE_URL = st.secrets["OPENROUTER_BASE_URL"]
 
 # Initialize the LLM (replace with your preferred model)
 llm = ChatOpenAI(

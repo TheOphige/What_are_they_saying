@@ -15,17 +15,20 @@ from langchain_community.vectorstores import Chroma
 from langchain_community.embeddings import HuggingFaceInferenceAPIEmbeddings
 import chromadb
 
-# Load environment variables from .env
-from dotenv import find_dotenv, load_dotenv
+# # Load environment variables from .env
+# from dotenv import find_dotenv, load_dotenv
 
-# Load environment variables
-load_dotenv(find_dotenv())
+# # Load environment variables
+# load_dotenv(find_dotenv())
 
-# Retrieve API keys from .env
-OPENROUTER_API_KEY = os.getenv("OPENROUTER_API_KEY")
-OPENROUTER_BASE_URL = os.getenv("OPENROUTER_BASE_URL")
-HUGGINGFACEHUB_API_TOKEN = os.getenv("HUGGINGFACEHUB_API_TOKEN")
+# # Retrieve API keys from .env
+# OPENROUTER_API_KEY = os.getenv("OPENROUTER_API_KEY")
+# OPENROUTER_BASE_URL = os.getenv("OPENROUTER_BASE_URL")
+# HUGGINGFACEHUB_API_TOKEN = os.getenv("HUGGINGFACEHUB_API_TOKEN")
 
+OPENROUTER_API_KEY = st.secrets["OPENROUTER_API_KEY"]
+OPENROUTER_BASE_URL = st.secrets["OPENROUTER_BASE_URL"]
+HUGGINGFACEHUB_API_TOKEN = st.secrets["HUGGINGFACEHUB_API_TOKEN"]
 
 llm = ChatOpenAI(
                 openai_api_key=OPENROUTER_API_KEY,  # Ensure the key is passed correctly

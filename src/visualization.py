@@ -2,19 +2,18 @@ import streamlit as st
 from wordcloud import WordCloud
 import io
 import requests
-from PIL import Image
-import matplotlib.pyplot as plt
 import os
 
 
-# Load environment variables from .env
-from dotenv import find_dotenv, load_dotenv
+# # Load environment variables from .env
+# from dotenv import find_dotenv, load_dotenv
 
-# Load environment variables
-load_dotenv(find_dotenv())
+# # Load environment variables
+# load_dotenv(find_dotenv())
 
-# Retrieve API keys from .env
-IMGUR_CLIENT_ID = os.getenv("IMGUR_CLIENT_ID")
+# # Retrieve API keys from .env
+# IMGUR_CLIENT_ID = os.getenv("IMGUR_CLIENT_ID")
+IMGUR_CLIENT_ID = st.secrets["IMGUR_CLIENT_ID"]
 
 # Upload image to Imgur
 def upload_to_imgur(image):
