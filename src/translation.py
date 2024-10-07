@@ -14,18 +14,19 @@ headers = {"Authorization": f"Bearer {HUGGINGFACEHUB_API_TOKEN}"}
 
 # List of supported languages with codes
 SUPPORTED_LANGUAGES = {
-    'ar': 'ar_AR', 'cs': 'cs_CZ', 'de': 'de_DE', 'en': 'en_XX', 'es': 'es_XX', 
-    'et': 'et_EE', 'fi': 'fi_FI', 'fr': 'fr_XX', 'gu': 'gu_IN', 'hi': 'hi_IN', 
-    'it': 'it_IT', 'ja': 'ja_XX', 'kk': 'kk_KZ', 'ko': 'ko_KR', 'lt': 'lt_LT', 
-    'lv': 'lv_LV', 'my': 'my_MM', 'ne': 'ne_NP', 'nl': 'nl_XX', 'ro': 'ro_RO', 
-    'ru': 'ru_RU', 'si': 'si_LK', 'tr': 'tr_TR', 'vi': 'vi_VN', 'zh': 'zh_CN',
-    'af': 'af_ZA', 'az': 'az_AZ', 'bn': 'bn_IN', 'fa': 'fa_IR', 'he': 'he_IL', 
-    'hr': 'hr_HR', 'id': 'id_ID', 'ka': 'ka_GE', 'km': 'km_KH', 'mk': 'mk_MK', 
-    'ml': 'ml_IN', 'mn': 'mn_MN', 'mr': 'mr_IN', 'pl': 'pl_PL', 'ps': 'ps_AF', 
-    'pt': 'pt_XX', 'sv': 'sv_SE', 'sw': 'sw_KE', 'ta': 'ta_IN', 'te': 'te_IN', 
-    'th': 'th_TH', 'tl': 'tl_XX', 'uk': 'uk_UA', 'ur': 'ur_PK', 'xh': 'xh_ZA',
-    'gl': 'gl_ES', 'sl': 'sl_SI'
+    'arabic': 'ar_AR', 'czech': 'cs_CZ', 'german': 'de_DE', 'english': 'en_XX', 'spanish': 'es_XX',
+    'estonian': 'et_EE', 'finnish': 'fi_FI', 'french': 'fr_XX', 'gujarati': 'gu_IN', 'hindi': 'hi_IN',
+    'italian': 'it_IT', 'japanese': 'ja_XX', 'kazakh': 'kk_KZ', 'korean': 'ko_KR', 'lithuanian': 'lt_LT',
+    'latvian': 'lv_LV', 'burmese': 'my_MM', 'nepali': 'ne_NP', 'dutch': 'nl_XX', 'romanian': 'ro_RO',
+    'russian': 'ru_RU', 'sinhala': 'si_LK', 'turkish': 'tr_TR', 'vietnamese': 'vi_VN', 'chinese': 'zh_CN',
+    'afrikaans': 'af_ZA', 'azerbaijani': 'az_AZ', 'bengali': 'bn_IN', 'persian': 'fa_IR', 'hebrew': 'he_IL',
+    'croatian': 'hr_HR', 'indonesian': 'id_ID', 'georgian': 'ka_GE', 'khmer': 'km_KH', 'macedonian': 'mk_MK',
+    'malayalam': 'ml_IN', 'mongolian': 'mn_MN', 'marathi': 'mr_IN', 'polish': 'pl_PL', 'pashto': 'ps_AF',
+    'portuguese': 'pt_XX', 'swedish': 'sv_SE', 'swahili': 'sw_KE', 'tamil': 'ta_IN', 'telugu': 'te_IN',
+    'thai': 'th_TH', 'tagalog': 'tl_XX', 'ukrainian': 'uk_UA', 'urdu': 'ur_PK', 'xhosa': 'xh_ZA',
+    'galician': 'gl_ES', 'slovenian': 'sl_SI'
 }
+
 
 def translate_text(text: str, src_lang: str, tgt_lang: str, max_retries: int = 5, retry_delay: int = 10) -> Dict[str, Any]:
     """
