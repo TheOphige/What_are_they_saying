@@ -25,9 +25,3 @@ def convert_keywords(keywords):
         new_freq = round(freq * 100, 2)  # Multiply by 100 and round to 2 decimal places
         converted_keywords.append((new_word, new_freq))
     return converted_keywords
-
-# # Example usage:
-# text = "This is an example text for keyword extraction."
-# language = "en"  # Change to any language code, e.g., 'fr', 'es', 'de', etc.
-# keywords = extract_keywords(text, max_ngram_size=3, num_keywords=5, language=language)
-# print(keywords)

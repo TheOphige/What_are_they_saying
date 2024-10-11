@@ -35,9 +35,9 @@ OPENROUTER_BASE_URL = st.secrets["OPENROUTER_BASE_URL"]
 HUGGINGFACEHUB_API_TOKEN = st.secrets["HUGGINGFACEHUB_API_TOKEN"]
 
 llm = ChatOpenAI(
-                openai_api_key=OPENROUTER_API_KEY,  # Ensure the key is passed correctly
-                openai_api_base=OPENROUTER_BASE_URL,  # Ensure the base URL is correct
-                model_name="mistralai/pixtral-12b:free"  # Adjust based on model availability
+                openai_api_key=OPENROUTER_API_KEY,  
+                openai_api_base=OPENROUTER_BASE_URL,  
+                model_name="mistralai/pixtral-12b:free"  
             )
 
 
@@ -298,44 +298,3 @@ def initialize_message(input_type, input_text):
         What would you like to know about the article from {input_text} ?
         """
         st.session_state.history.append({"role": "assistant", "content": welcome_text})
-
-
-# # Streamlit Interface
-# st.title("WATS: Question Answering Agent")
-
-# # Sidebar for user input
-# st.sidebar.header("What are they saying?")
-# input_type = st.sidebar.selectbox("Choose input type:", ("Wikipedia Query", "Text", "URL"))
-# input_text = st.sidebar.text_area("Enter text, search query, or URL:")
-
-# # Sidebar for Mode Selection
-# mode = st.sidebar.radio("Select Mode:", options=["Summarize in language", "Chat with doc"], index=0)
-
-# if mode == "Summarize in language":
-#     pass
-
-# elif mode == "Chat with doc":
-#     try:
-#         if st.sidebar.button("Analyze"):
-#             if not input_text:
-#                 st.error("Please provide valid input.")
-#             else:
-#                 initialize_session_state()
-#                 if not st.session_state.history:
-#                     st.session_state.history.append({"role": "assistant", "content": "Hello! I am WATS. How can I assist you today?"})
-#                     st.session_state.conversation_history = []
-
-#         # Handle chat input
-#         chat_input = st.chat_input("Ask me a question about the article:")
-#         if chat_input:
-#             on_chat_submit(input_type, input_text, chat_input)
-
-#         # Display chat history
-#         for message in st.session_state.history:
-#             role = message["role"]
-#             avatar_image = "imgs/avatar_streamly.png" if role == "assistant" else "imgs/stuser.png"
-#             with st.chat_message(role, avatar=avatar_image):
-#                 st.write(message["content"])
-#     except Exception as e:
-#         # st.error(f"Error occurred: {e}")
-#         st.info("Please enter text, search query, or URL. Then click ANALYZE.")

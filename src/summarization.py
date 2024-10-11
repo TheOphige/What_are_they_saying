@@ -56,15 +56,3 @@ def summarize_input(input_text, input_type) -> str:
     summary = summarize_chain.invoke(input=article_content) # run(article=article_content)
     
     return summary
-
-# # Example usage
-# if __name__ == "__main__":
-#     # For Wikipedia query  
-#     wikipedia_query = "Artificial Intelligence"
-#     summary_from_query = summarize_input(wikipedia_query, is_query=True)
-#     print("Summary from Wikipedia:", summary_from_query)
-
-#     # For plain text
-#     text = "Artificial intelligence (AI) is intelligence demonstrated by machines, as opposed to the natural intelligence displayed by humans and animals."
-#     summary_from_text = summarize_input(text, is_query=False)
-#     print("Summary from Text:", summary_from_text)
