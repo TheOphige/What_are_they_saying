@@ -5,7 +5,8 @@ help:
 
 # Install dependencies
 install:
-	pip install -r requirements.txt
+	pip install --upgrade pip &&\
+		pip install -r requirements.txt
 
 # Run the Streamlit app
 run:
@@ -15,6 +16,13 @@ run:
 test:
 	pytest tests/
 
+# format code
+format:
+	black *.py
+
 # Lint the code
 lint:
 	flake8 src/
+
+
+all: install lint test format

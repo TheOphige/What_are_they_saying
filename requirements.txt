@@ -14,3 +14,5 @@ yake==0.4.8
 pysqlite3-binary
 wikipedia==1.4.0
 pytest==8.3.2
+black==23.3.0
+flake8
