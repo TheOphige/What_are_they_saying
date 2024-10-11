@@ -1,6 +1,7 @@
 [![WATS test with Github Actions](https://github.com/TheOphige/What_are_they_saying/actions/workflows/main.yml/badge.svg)](https://github.com/TheOphige/What_are_they_saying/actions/workflows/main.yml)
 
 # What are they saying?
+Understand articles in your language and chat with any article.
 
 ## Project Overview
 This project translates, summarizes, and provides insights into any text or Wikipedia page content in your preferred language. It generates a concise summary, extracts keywords, and visualizes them in an interactive word cloud.
