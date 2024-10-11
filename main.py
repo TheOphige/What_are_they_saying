@@ -119,8 +119,7 @@ elif mode == "Chat with article":
         
 
         if chat_input:
-            with st.spinner("🛠 Working..."):
-                on_chat_submit(input_type, input_text, chat_input)
+            on_chat_submit(input_type, input_text, chat_input)
 
         # Display chat history
         for message in st.session_state.history:
