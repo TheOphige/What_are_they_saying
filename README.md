@@ -1,3 +1,5 @@
+[![WATS test with Github Actions](https://github.com/TheOphige/What_are_they_saying/actions/workflows/main.yml/badge.svg)](https://github.com/TheOphige/What_are_they_saying/actions/workflows/main.yml)
+
 # What are they saying?
 
 ## Project Overview
