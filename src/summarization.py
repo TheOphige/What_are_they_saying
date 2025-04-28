@@ -1,6 +1,6 @@
 import os
 import streamlit as st
-from langchain_openai import ChatOpenAI
+from langchain_community.chat_models import ChatOpenAI
 from langchain_core.output_parsers import StrOutputParser
 from langchain_community.document_loaders import WikipediaLoader
 from langchain_community.document_loaders import WebBaseLoader
