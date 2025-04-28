@@ -59,5 +59,5 @@ def generate_word_cloud(keywords: list):
     
     if imgur_url:
         # Display the image from Imgur
-        st.image(imgur_url, caption='Colorful Word Cloud', use_column_width=True)
+        st.image(imgur_url, caption='Colorful Word Cloud', use_container_width=True)
 
