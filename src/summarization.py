@@ -20,7 +20,7 @@ OPENROUTER_BASE_URL = st.secrets["OPENROUTER_BASE_URL"]
 llm = ChatOpenAI(
     openai_api_key=OPENROUTER_API_KEY,
     openai_api_base=OPENROUTER_BASE_URL,
-    model_name="mistralai/pixtral-12b:free",
+    model_name="microsoft/mai-ds-r1:free",
 )
 
 # Define the prompt template for summarization
