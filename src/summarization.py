@@ -18,8 +18,8 @@ OPENROUTER_BASE_URL = st.secrets["OPENROUTER_BASE_URL"]
 
 # Initialize the LLM (replace with your preferred model)
 llm = ChatOpenAI(
-    openai_api_key=OPENROUTER_API_KEY,
-    openai_api_base=OPENROUTER_BASE_URL,
+    openai_api_key=os.getenv("OPENROUTER_API_KEY"),
+    openai_api_base=os.getenv("OPENROUTER_BASE_URL"),
     model_name="microsoft/mai-ds-r1:free",
 )
 
